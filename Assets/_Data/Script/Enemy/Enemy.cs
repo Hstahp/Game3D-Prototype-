@@ -8,13 +8,19 @@ public abstract class Enemy : MonoBehaviour
     string enemyName = "Enemy";
     bool isDead = false;
     bool isBoss = true;
-    EnemyHead head1 = new EnemyHead();
-    EnemyHeart heart = new EnemyHeart();
+    //EnemyHead head1 = new EnemyHead();
+    //EnemyHeart heart = new EnemyHeart();
     public abstract string GetName();
-
+    private void FixedUpdate()
+    {
+        this.TestClass();
+    }
     void TestClass()
     {
-        this.GetName();
+        this.Moving();
+        this.SetHp(-1);
+        string logMessage = this.GetName() + ": " + this.GetCurrentHp() + " " + this.IsDead();
+        Debug.Log(logMessage);
     }
  
     public virtual int GetCurrentHp()
