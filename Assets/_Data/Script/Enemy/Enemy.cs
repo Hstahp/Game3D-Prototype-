@@ -5,7 +5,7 @@ public abstract class Enemy : MonoBehaviour
     int currentHp = 100;
     int maxHp = 100;
     float weight = 2.5f;
-    string enemyName = "Enemy";
+    //string enemyName = "Enemy";
     bool isDead = false;
     bool isBoss = true;
     //EnemyHead head1 = new EnemyHead();
@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour
     public abstract string GetName();
     private void FixedUpdate()
     {
-        this.TestClass();
+       // this.TestClass();
     }
     void TestClass()
     {
