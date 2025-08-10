@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -18,6 +18,11 @@ public abstract class Enemy : MonoBehaviour
         this.InitData();
     }
     public abstract string GetName();
+    public virtual string GetObjName()
+    {
+        return transform.name;
+        //giống return gameObj.name;
+    }
     protected virtual void InitData()
     {
         this.weight = this.GetRandomWeight();
@@ -46,9 +51,17 @@ public abstract class Enemy : MonoBehaviour
     {
         this.currentHp = newHp;
     }
-    float GetWeight()
+    public virtual float GetWeight()
     {
         return this.weight;
+    }
+    public virtual float GetMaxWeight()
+    {
+        return this.maxWeight;
+    }
+    public virtual float GetMinWeight()
+    {
+        return this.minWeight;
     }
     public virtual bool IsDead()
     {
@@ -56,7 +69,7 @@ public abstract class Enemy : MonoBehaviour
         else this.isDead = true;
             return this.isDead;
     }
-    bool IsBoss()
+    public virtual bool IsBoss()
     {
         return this.isBoss;
     }
