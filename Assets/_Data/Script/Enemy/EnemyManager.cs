@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     List<Enemy> enemies = new List<Enemy>();
+    public List<Enemy> Enemies => this.enemies;
     Enemy smallestEnemy;
     Enemy biggesttEnemy;
     private void Awake()
