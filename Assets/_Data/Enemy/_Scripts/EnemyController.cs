@@ -5,12 +5,16 @@ public class EnemyController : SaiMonoBehaviour
 {
     [SerializeField] protected Transform model;
     [SerializeField] protected NavMeshAgent agent;
+  
     public NavMeshAgent Agent => agent;
+    [SerializeField] protected Animator animator;
+    public Animator Animator => animator;
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadNavMeshAgent();
         this.LoadModel();
+        this.LoadAnimator();
     }
     protected virtual void LoadNavMeshAgent()
     {
@@ -27,5 +31,11 @@ public class EnemyController : SaiMonoBehaviour
         this.model = transform.Find("Model");
         this.model.localPosition = new Vector3(0, 0, 0);
         Debug.Log(transform.name + ":LoadModel", gameObject);
+    }
+    protected virtual void LoadAnimator()
+    {
+        if (this.animator != null) return;
+        this.animator = this.model.GetComponent<Animator>();
+        Debug.Log(transform.name + ": LoadAnimator", gameObject);
     }
 }

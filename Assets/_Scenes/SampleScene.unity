@@ -679,16 +679,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 698861625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505fd5ffdaaa86a4ba3f18f3913b633e, type: 3}
+  m_Script: {fileID: 11500000, guid: ca72d7ddd3570a045a60aa195957d824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemyController: {fileID: 1243978266}
-  pathName: path_1
+  enemyController: {fileID: 0}
+  pathName: path_0
   enemyPath: {fileID: 0}
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stoptDistance: 1
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!1 &705507993
 GameObject:
@@ -1004,6 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1689497019}
   agent: {fileID: 864173990}
+  animator: {fileID: 1689497021}
 --- !u!1001 &958288831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,6 +1426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1294540185}
   agent: {fileID: 1243978265}
+  animator: {fileID: 1294540187}
 --- !u!1 &1247214488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1582853965}
   agent: {fileID: 1332054808}
+  animator: {fileID: 1582853966}
 --- !u!195 &1332054808
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1879,12 +1884,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemyController: {fileID: 1332054806}
-  pathName: path_0
+  enemyController: {fileID: 0}
+  pathName: path_1
   enemyPath: {fileID: 0}
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stoptDistance: 1
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!1001 &1566454719
 PrefabInstance:
@@ -2161,12 +2168,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemyController: {fileID: 864173991}
+  enemyController: {fileID: 0}
   pathName: path_1
   enemyPath: {fileID: 0}
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stoptDistance: 1
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!1 &1657463665
 GameObject:
