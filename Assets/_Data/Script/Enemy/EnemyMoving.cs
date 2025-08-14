@@ -5,13 +5,15 @@ public class EnemyMoving : SaiMonoBehaviour
 {
     public GameObject target;
     [SerializeField] protected EnemyController enemyController;
-   
-    void Start()
+    [SerializeField] protected string pathName = "path_1";
+    [SerializeField] protected Path enemyPath;
+    [SerializeField] protected Point currentPoint;
+    [SerializeField] protected float pointDistance = Mathf.Infinity;
+    [SerializeField] protected float stoptDistance = 1f;
+    [SerializeField] protected bool isFinish = false;
+        protected override void Start()
     {
-        
-    }
-    void Update()
-    {
+        this.LoadEnemyPath();
     }
      void FixedUpdate()
      {
@@ -21,7 +23,7 @@ public class EnemyMoving : SaiMonoBehaviour
      {
         base.LoadComponents();
         this.LoadCtrl();
-        this.LoadTargetMoving();
+        //this.LoadTargetMoving();
      }
     protected virtual void LoadCtrl()
     {
@@ -37,6 +39,29 @@ public class EnemyMoving : SaiMonoBehaviour
     }
     protected virtual void Moving()
     {
-        this.enemyController.Agent.SetDestination(target.transform.position);
+        this.FindNextPoint();
+        if(this.currentPoint == null || this.isFinish == true) {
+           this.enemyController.Agent.isStopped = true; 
+           return;
+        }
+        
+        this.enemyController.Agent.SetDestination(this.currentPoint.transform.position);
+        //this.enemyController.Agent.SetDestination(target.transform.position);
+    }
+    protected virtual void FindNextPoint()
+    {
+        if(this.currentPoint == null) this.currentPoint = this.enemyPath.GetPoint(0);
+        this.pointDistance = Vector3.Distance(transform.position, this.currentPoint.transform.position);
+        if(this.pointDistance < this.stoptDistance)
+        {
+            this.currentPoint = this.currentPoint.NextPoint;
+            if(this.currentPoint == null) this.isFinish = true; 
+        }
+    }
+    protected virtual void LoadEnemyPath()
+    {
+        if(this.enemyPath != null) return;
+        this.enemyPath = PathsManager.Instance.GetPath(this.pathName);
+        Debug.Log(transform.name + ": LoadEnemyCtrl", gameObject);
     }
 }

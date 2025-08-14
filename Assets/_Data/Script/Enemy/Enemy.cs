@@ -42,7 +42,10 @@ public abstract class Enemy : MonoBehaviour
         string logMessage = this.GetName() + ": " + this.GetCurrentHp() + " " + this.IsDead();
         Debug.Log(logMessage);
     }
- 
+    public virtual int GetMaxHp()
+    {
+        return this.maxHp;
+    }
     public virtual int GetCurrentHp()
     {
         return this.currentHp;
