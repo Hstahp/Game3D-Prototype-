@@ -11,7 +11,7 @@ public class TowerTargeting : SaiMonoBehaviour
     [SerializeField] protected List<EnemyController> enemies = new();
     protected virtual void FixedUpdate()
     {
-     //   this.FindNearest();
+        this.FindNearest();
     }
     protected virtual void OnTriggerEnter(Collider collider)
     {
@@ -56,10 +56,24 @@ public class TowerTargeting : SaiMonoBehaviour
         Debug.Log("RemoveEnemy: " + collider.name);
         foreach(EnemyController enemyController in this.enemies)
         {
-            if(collider.transform.parent.name == enemyController.name)
+            if(collider.transform.parent == enemyController.transform)
             {
                 this.enemies.Remove(enemyController);
                 return;
+            }
+        }
+    }
+    protected virtual void FindNearest()
+    {
+        float nearestDistance = Mathf.Infinity;
+        float enemyDistance;
+        foreach(EnemyController enemyController in this.enemies)
+        {
+            enemyDistance = Vector3.Distance(transform.position, enemyController.transform.position);
+            if(enemyDistance < nearestDistance)
+            {
+                nearestDistance = enemyDistance;
+                this.nearest = enemyController;
             }
         }
     }
