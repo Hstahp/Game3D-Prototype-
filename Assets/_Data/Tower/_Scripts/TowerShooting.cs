@@ -5,6 +5,8 @@ public class TowerShooting : TowerAbstract
 {
     [SerializeField] protected float rotationSpeed = 50f;
     [SerializeField] protected EnemyController target;
+    [SerializeField] protected BulletSpawner bulletSpawner;
+    [SerializeField] protected Bullet bullet;
 
     protected override void Start()
     {
@@ -13,17 +15,17 @@ public class TowerShooting : TowerAbstract
     }
     protected void FixedUpdate()
     {
-        this.LookingAtTarget();
-        //this.ShootAtTarget();
-        //this.TargetLoading();
+        this.Looking();
+        this.Shooting();
     }
+  
     protected virtual void TargetLoading()
     {
         Invoke(nameof(this.TargetLoading), 1f);
         this.target = this.towerController.TowerTargeting.Nearest;
     }
 
-    protected virtual void LookingAtTarget()
+    protected virtual void Looking()
     {
         if (this.target == null) return;
 
@@ -39,5 +41,11 @@ public class TowerShooting : TowerAbstract
         this.towerController.Rotator.rotation = Quaternion.LookRotation(newDirection);
 
         //this.towerCtrl.Rotator.LookAt(this.target.TowerTargetable.transform.position);
+    }
+    protected virtual void Shooting()
+    {
+        if(this.target == null) return;
+        //Spawner
+        this.towerController.BulletSpawner.Spawn(this.towerController.Bullet);
     }
 }
