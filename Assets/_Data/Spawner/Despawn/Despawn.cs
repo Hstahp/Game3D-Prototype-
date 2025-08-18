@@ -1,25 +1,37 @@
 using UnityEngine;
 
-public abstract class Despawn : SaiMonoBehaviour
+public abstract class Despawn<T> : SaiMonoBehaviour
 {
-    [SerializeField] protected Spawner spawner;
+    [SerializeField] protected T parent;
+    [SerializeField] protected Spawner<T> spawner;
     [SerializeField] protected float timeLife = 7.0f;
-    [SerializeField] protected float currentTIme = 7.0f;
+    [SerializeField] protected float currentTime = 7.0f;
 
     protected virtual void FixedUpdate()
     {
         this.DespawnChecking();
     }
-    public virtual void SetSpawner(Spawner spawner)
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadParent();
+    }
+    protected virtual void LoadParent()
+    {
+        if (this.parent != null) return;
+        this.parent = transform.parent.GetComponent<T>();
+        Debug.Log(transform.name + ": LoadParent", gameObject);
+    }
+    public virtual void SetSpawner(Spawner<T> spawner)
     {
         this.spawner = spawner;
       
     }
     protected virtual void DespawnChecking()
     {
-        this.currentTIme -= Time.fixedDeltaTime;
-        if (this.currentTIme > 0) return;
-        this.spawner.Despawn(transform.parent);
-        this.currentTIme = this.timeLife;
+        this.currentTime -= Time.fixedDeltaTime;
+        if (this.currentTime > 0) return;
+        this.spawner.Despawn(this.parent);
+        this.currentTime = this.timeLife;
     }
  }

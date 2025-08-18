@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class BulletSpawner : Spawner
+public class BulletSpawner : Spawner<Bullet>
 {
     //Method overloading
-    public virtual Bullet Spawn(Bullet prefab)
+    public virtual Bullet Spawn(Bullet bulletPrefab)
     {
-        Bullet newObject = Instantiate(prefab);
+        Bullet newObject = Instantiate(bulletPrefab);
         newObject.Despawn.SetSpawner(this);
+        this.spawnCount++;
+        this.UpdateName(bulletPrefab.transform, newObject.transform);
         return newObject;
     }
     public virtual Bullet Spawn(Bullet bulletPrefab, Vector3 position)

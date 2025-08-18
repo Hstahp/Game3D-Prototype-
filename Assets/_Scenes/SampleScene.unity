@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c186ea8f509f4f42a7c249758b574f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnCount: 0
+  inPoolObjs: []
 --- !u!1 &232894115
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +310,7 @@ MonoBehaviour:
   rotator: {fileID: 544970479}
   towerTargeting: {fileID: 1166703977}
   bulletSpawner: {fileID: 151081383}
-  bullet: {fileID: 0}
+  bullet: {fileID: 8237653076821352705}
   firePoints:
   - {fileID: 1180364369}
   - {fileID: 1180364368}
@@ -4051,11 +4053,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8643912863333632183, guid: 19aa212601479bb45b2933b89e3d45a3, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 8237653076821352705}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19aa212601479bb45b2933b89e3d45a3, type: 3}
+--- !u!114 &8237653076821352705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5766640358282473853, guid: 19aa212601479bb45b2933b89e3d45a3, type: 3}
+  m_PrefabInstance: {fileID: 8237653076821352704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1dbdd22ca13554388536d686b5a033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

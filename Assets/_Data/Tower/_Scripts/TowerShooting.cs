@@ -2,7 +2,7 @@
 
 public class TowerShooting : TowerAbstract
 {
-    [SerializeField] protected float rotationSpeed = 50f;
+    [SerializeField] protected float rotationSpeed = 2f;
     [SerializeField] protected int  currentFirePoint = 0;
     [SerializeField] protected float shootSpeed = 1f;
     [SerializeField] protected float targetLoadSpeed = 1f;
