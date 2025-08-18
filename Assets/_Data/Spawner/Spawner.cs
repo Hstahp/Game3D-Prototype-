@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Spawner<T> : SaiMonoBehaviour
+public abstract class Spawner<T> : SaiMonoBehaviour where T : PoolObj
 {
     [SerializeField] protected int spawnCount = 0;
     [SerializeField] protected List<T> inPoolObjs;
@@ -11,6 +11,20 @@ public abstract class Spawner<T> : SaiMonoBehaviour
     {
         Transform newObject = Instantiate(prefab);  
         return newObject;
+    }
+    public virtual T Spawn(T prefab)
+    {
+        T newObject = Instantiate(prefab);
+        //newObject.Despawn.SetSpawner(this);
+        this.spawnCount++;
+        this.UpdateName(prefab.transform, newObject.transform);
+        return newObject;
+    }
+    public virtual T Spawn(T bulletPrefab, Vector3 position)
+    {
+        T newBullet = this.Spawn(bulletPrefab);
+        newBullet.transform.position = position;
+        return newBullet;
     }
     public virtual void Despawn(Transform obj)
     {

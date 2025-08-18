@@ -4057,6 +4057,10 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 8237653076821352705}
+    - target: {fileID: 8643912863333632183, guid: 19aa212601479bb45b2933b89e3d45a3, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 151081383}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

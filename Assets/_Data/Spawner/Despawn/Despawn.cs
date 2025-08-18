@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Despawn<T> : SaiMonoBehaviour
+public abstract class Despawn<T> : DespawnBase where T : PoolObj
 {
     [SerializeField] protected T parent;
     [SerializeField] protected Spawner<T> spawner;
@@ -15,12 +15,19 @@ public abstract class Despawn<T> : SaiMonoBehaviour
     {
         base.LoadComponents();
         this.LoadParent();
+        this.LoadSpawner();
     }
     protected virtual void LoadParent()
     {
         if (this.parent != null) return;
         this.parent = transform.parent.GetComponent<T>();
         Debug.Log(transform.name + ": LoadParent", gameObject);
+    }
+    protected virtual void LoadSpawner()
+    {
+        if (this.spawner != null) return;
+        this.spawner =GameObject.FindFirstObjectByType<Spawner<T>>();
+        Debug.Log(transform.name + ": LoadSpawner", gameObject);
     }
     public virtual void SetSpawner(Spawner<T> spawner)
     {

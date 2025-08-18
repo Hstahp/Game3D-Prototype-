@@ -46,7 +46,7 @@ public class TowerController : SaiMonoBehaviour
     protected virtual void LoadBulletSpawner()
     {
         if (this.bulletSpawner != null) return;
-        this.bulletSpawner = FindAnyObjectByType<BulletSpawner>();
+        this.bulletSpawner = FindFirstObjectByType<BulletSpawner>();
         Debug.Log(transform.name + ": LoadBulletSpawner", gameObject);
     }
     protected virtual void LoadBullet()
