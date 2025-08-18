@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TowerShooting : TowerAbstract
 {
@@ -51,6 +50,8 @@ public class TowerShooting : TowerAbstract
         if (this.target == null) return;
         FirePoint firePoint = this.GetFirePoint();
         Bullet newBullet = this.towerController.BulletSpawner.Spawn(this.towerController.Bullet, firePoint.transform.position);
+        Vector3 rotatorDirection = this.towerController.Rotator.transform.forward;
+        newBullet.transform.forward = rotatorDirection;
         newBullet.gameObject.SetActive(true);
     }
     protected virtual FirePoint GetFirePoint()
