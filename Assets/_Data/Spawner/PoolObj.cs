@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class PoolObj : SaiMonoBehaviour
 {
     [SerializeField] protected DespawnBase despawn;
-    public DespawnBase DespawnBase => despawn;
+    public DespawnBase Despawn => despawn;
     public abstract string GetName();
     protected override void LoadComponents()
     {

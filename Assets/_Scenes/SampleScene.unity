@@ -796,7 +796,7 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stoptDistance: 1
-  canMove: 1
+  canMove: 0
   isMoving: 0
   isFinish: 0
 --- !u!1 &705507993
@@ -2770,7 +2770,7 @@ MonoBehaviour:
   towerController: {fileID: 232894117}
   currentFirePoint: 0
   targetLoadSpeed: 1
-  shootSpeed: 1
+  shootSpeed: 2
   rotationSpeed: 2
   target: {fileID: 0}
 --- !u!1001 &1689497018

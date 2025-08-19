@@ -18,10 +18,6 @@ public abstract  class DamageSender : SaiMonoBehaviour
         base.LoadComponents();
         this.LoadRigidbody();
     }
-    protected virtual void Send(DamageReceiver damageReceiver)
-    {
-        damageReceiver.Deduct(this.damage);
-    }
     protected virtual void LoadRigidbody()
     {
         if (this.rigid != null) return;
@@ -29,4 +25,9 @@ public abstract  class DamageSender : SaiMonoBehaviour
         this.rigid.useGravity = false;
         Debug.Log(transform.name + ": LoadRigidbody", gameObject);
     }
+    protected virtual void Send(DamageReceiver damageReceiver)
+    {
+        damageReceiver.Deduct(this.damage);
+    }
+  
 }
