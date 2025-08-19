@@ -9,7 +9,7 @@ public class EnemyMoving : SaiMonoBehaviour
     [SerializeField] protected Path enemyPath;
     [SerializeField] protected Point currentPoint;
     [SerializeField] protected float pointDistance = Mathf.Infinity;
-    [SerializeField] protected float stoptDistance = 1f;
+    [SerializeField] protected float stopDistance = 1f;
     [SerializeField] protected bool canMove = true;
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isFinish = false;
@@ -60,7 +60,7 @@ public class EnemyMoving : SaiMonoBehaviour
     {
         if(this.currentPoint == null) this.currentPoint = this.enemyPath.GetPoint(0);
         this.pointDistance = Vector3.Distance(transform.position, this.currentPoint.transform.position);
-        if(this.pointDistance < this.stoptDistance)
+        if(this.pointDistance < this.stopDistance)
         {
             this.currentPoint = this.currentPoint.NextPoint;
             if(this.currentPoint == null) this.isFinish = true; 
