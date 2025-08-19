@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class PoolObj : SaiMonoBehaviour
+public abstract class PoolObj : SaiMonoBehaviour
 {
     [SerializeField] protected DespawnBase despawn;
     public DespawnBase DespawnBase => despawn;
+    public abstract string GetName();
     protected override void LoadComponents()
     {
         base.LoadComponents();
