@@ -47,6 +47,12 @@ public class EnemyMoving : SaiMonoBehaviour
             this.enemyController.Agent.isStopped = true;
             return;
         }
+        //if (!this.enemyController.EnemyDamageReceiver.IsDead())
+        //{
+        //    this.enemyController.Agent.isStopped = true;
+        //    return;
+        //}
+       
         this.FindNextPoint();
         if(this.currentPoint == null || this.isFinish == true) {
            this.enemyController.Agent.isStopped = true; 
