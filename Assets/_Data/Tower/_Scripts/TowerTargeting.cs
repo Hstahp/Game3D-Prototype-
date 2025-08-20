@@ -16,7 +16,7 @@ public class TowerTargeting : SaiMonoBehaviour
     }
     protected virtual void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("OnTriggerEnter: " + collider.name);
+        //Debug.Log("OnTriggerEnter: " + collider.name);
         this.AddEnemy(collider);
     }
     protected virtual void OnTriggerExit(Collider collider)
@@ -54,7 +54,7 @@ public class TowerTargeting : SaiMonoBehaviour
     }
     protected virtual void RemoveEnemy(Collider collider)
     {
-        Debug.Log("RemoveEnemy: " + collider.name);
+        //Debug.Log("RemoveEnemy: " + collider.name);
         foreach(EnemyController enemyController in this.enemies)
         {
             if(collider.transform.parent == enemyController.transform)

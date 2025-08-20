@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : SaiMonoBehaviour
+public abstract class EnemyController : PoolObj
 {
     [SerializeField] protected Transform model;
     [SerializeField] protected NavMeshAgent agent;

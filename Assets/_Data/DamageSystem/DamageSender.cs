@@ -10,7 +10,7 @@ public abstract  class DamageSender : SaiMonoBehaviour
         DamageReceiver damageReceiver = collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
         this.Send(damageReceiver);
-        Debug.Log("OnTriggerEnter: " + collider.name);
+        //Debug.Log("OnTriggerEnter: " + collider.name);
 
     }
     protected override void LoadComponents()
