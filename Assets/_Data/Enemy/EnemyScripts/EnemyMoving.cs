@@ -5,7 +5,7 @@ public class EnemyMoving : SaiMonoBehaviour
 {
     public GameObject target;
     [SerializeField] protected EnemyController enemyController;
-    [SerializeField] protected string pathName = "path_1";
+    [SerializeField] protected string pathName = "path_0";
     [SerializeField] protected Path enemyPath;
     [SerializeField] protected Point currentPoint;
     [SerializeField] protected float pointDistance = Mathf.Infinity;
@@ -26,19 +26,12 @@ public class EnemyMoving : SaiMonoBehaviour
      {
         base.LoadComponents();
         this.LoadEnemyCtrl();
-        //this.LoadTargetMoving();
      }
     protected virtual void LoadEnemyCtrl()
     {
         if (this.enemyController != null) return;
         this.enemyController = transform.parent.GetComponent<EnemyController>();
         Debug.Log(transform.name + ":LoadEnemyCtrl", gameObject);
-    }
-    protected virtual void LoadTargetMoving()
-    {
-        if (this.target != null) return;
-        this.target = GameObject.Find("TargetMoving");
-        Debug.Log(transform.name + ":LoadTargetMoving", gameObject);
     }
     protected virtual void Moving()
     {
@@ -47,20 +40,21 @@ public class EnemyMoving : SaiMonoBehaviour
             this.enemyController.Agent.isStopped = true;
             return;
         }
-        //if (!this.enemyController.EnemyDamageReceiver.IsDead())
-        //{
-        //    this.enemyController.Agent.isStopped = true;
-        //    return;
-        //}
-       
+        if (this.enemyController.EnemyDamageReceiver.IsDead())
+        {
+            this.enemyController.Agent.isStopped = true;
+            return;
+        }
+
         this.FindNextPoint();
-        if(this.currentPoint == null || this.isFinish == true) {
+        
+        if(this.currentPoint == null || this.isFinish == true) 
+        {
            this.enemyController.Agent.isStopped = true; 
            return;
         }
         this.enemyController.Agent.isStopped = false;
         this.enemyController.Agent.SetDestination(this.currentPoint.transform.position);
-        //this.enemyController.Agent.SetDestination(target.transform.position);
     }
     protected virtual void FindNextPoint()
     {

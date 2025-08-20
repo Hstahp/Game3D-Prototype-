@@ -10,8 +10,8 @@ public abstract class EnemyController : PoolObj
     public Animator Animator => animator;
     [SerializeField] protected TowerTargetable towerTargetable;
     public TowerTargetable TowerTargetable => towerTargetable;
-    //[SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
-    //public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
+    [SerializeField] protected EnemyDamageReceiver enemyDamageReceiver;
+    public EnemyDamageReceiver EnemyDamageReceiver => enemyDamageReceiver;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -19,7 +19,7 @@ public abstract class EnemyController : PoolObj
         this.LoadModel();
         this.LoadAnimator();
         this.LoadTargetTable();
-       // this.LoadEnemyDamageReceiver();
+        this.LoadEnemyDamageReceiver();
     }
     protected virtual void LoadNavMeshAgent()
     {
@@ -50,10 +50,10 @@ public abstract class EnemyController : PoolObj
         this.towerTargetable.transform.localPosition = new Vector3(0, 0.4f, 0);
         Debug.Log(transform.name + ": LoadTargetTable", gameObject);
     }
-    //protected virtual void LoadEnemyDamageReceiver()
-    //{
-    //    if (this.enemyDamageReceiver != null) return;
-    //    this.enemyDamageReceiver = GetComponentInChildren<EnemyDamageReceiver>();
-    //    Debug.Log(enemyDamageReceiver.name + ": LoadEnemyDamageReceiver", gameObject);
-    //}
+    protected virtual void LoadEnemyDamageReceiver()
+    {
+        if (this.enemyDamageReceiver != null) return;
+        this.enemyDamageReceiver = GetComponentInChildren<EnemyDamageReceiver>();
+        Debug.Log(enemyDamageReceiver.name + ": LoadEnemyDamageReceiver", gameObject);
+    }
 }
