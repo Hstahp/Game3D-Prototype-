@@ -31,10 +31,16 @@ public class EnemyDamageReceiver : DamageReceiver
     {
         base.OnDead();
         this.enemyController.Animator.SetBool("isDead", this.isDead);
+        this.capsuleCollider.enabled = false;
+        Invoke(nameof(this.Disappear), 3f);
     }
     protected override void OnHurt()
     {
         base.OnHurt();
         this.enemyController.Animator.SetTrigger("isHurt");
+    }
+    protected virtual void Disappear()
+    {
+        this.enemyController.Despawn.DoDespawn();
     }
 }
