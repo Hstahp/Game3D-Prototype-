@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
+
 namespace Invector.vCharacterController
 {
     public class vThirdPersonInput : MonoBehaviour
@@ -10,16 +9,11 @@ namespace Invector.vCharacterController
         [Header("Controller Input")]
         public string horizontalInput = "Horizontal";
         public string verticallInput = "Vertical";
-        //public KeyCode jumpInput = KeyCode.Space;
-        //public KeyCode strafeInput = KeyCode.Tab;
-        //public KeyCode sprintInput = KeyCode.LeftShift;
-        
-        public UnityEngine.InputSystem.Key jumpInput = Key.Space;
-        public UnityEngine.InputSystem.Key strafeInput = Key.Tab;
-        public UnityEngine.InputSystem.Key sprintInput = Key.LeftShift;
+        public KeyCode jumpInput = KeyCode.Space;
+        public KeyCode strafeInput = KeyCode.Tab;
+        public KeyCode sprintInput = KeyCode.LeftShift;
 
         [Header("Camera Input")]
-        public float mouseSensitivity = 0.05f;
         public string rotateCameraXInput = "Mouse X";
         public string rotateCameraYInput = "Mouse Y";
 
@@ -90,36 +84,8 @@ namespace Invector.vCharacterController
 
         public virtual void MoveInput()
         {
-            //cc.input.x = Input.GetAxis(horizontalInput);
-            //cc.input.z = Input.GetAxis(verticallInput);
-            var keyboard = Keyboard.current;
-            float x = 0f;
-            float z = 0f;
-
-            if (keyboard.aKey.isPressed) x = -1f;
-            if (keyboard.dKey.isPressed) x = 1f;
-            if (keyboard.wKey.isPressed) z = 1f;
-            if (keyboard.sKey.isPressed) z = -1f;
-
-            cc.input.x = x;
-            cc.input.z = z;
-
-        }
-
-        //add 
-        protected virtual KeyControl GetKey(UnityEngine.InputSystem.Key key)
-        {
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return null;
-
-            try
-            {
-                return keyboard[key];
-            }
-            catch
-            {
-                return null; 
-            }
+            cc.input.x = Input.GetAxis(horizontalInput);
+            cc.input.z = Input.GetAxis(verticallInput);
         }
 
         protected virtual void CameraInput()
@@ -142,45 +108,24 @@ namespace Invector.vCharacterController
             if (tpCamera == null)
                 return;
 
-            //var Y = Input.GetAxis(rotateCameraYInput);
-            //var X = Input.GetAxis(rotateCameraXInput);
-            var mouse = Mouse.current;
-            if (mouse != null)
-            {
-                float X = mouse.delta.x.ReadValue() * mouseSensitivity;
-                float Y = mouse.delta.y.ReadValue() * mouseSensitivity;
-                tpCamera.RotateCamera(X, Y);
-            }
+            var Y = Input.GetAxis(rotateCameraYInput);
+            var X = Input.GetAxis(rotateCameraXInput);
 
-
-            //  tpCamera.RotateCamera(X, Y);
+            tpCamera.RotateCamera(X, Y);
         }
 
         protected virtual void StrafeInput()
         {
-            //if (Input.GetKeyDown(strafeInput))
-            //    cc.Strafe();
-            var keyControl = GetKey(strafeInput);
-            if (keyControl != null && keyControl.wasPressedThisFrame)
-            {
+            if (Input.GetKeyDown(strafeInput))
                 cc.Strafe();
-            }
         }
 
         protected virtual void SprintInput()
         {
-            //if (Input.GetKeyDown(sprintInput))
-            //    cc.Sprint(true);
-            //else if (Input.GetKeyUp(sprintInput))
-            //    cc.Sprint(false);
-            var keyControl = GetKey(sprintInput);
-            if (keyControl != null)
-            {
-                if (keyControl.wasPressedThisFrame)
-                    cc.Sprint(true);
-                else if (keyControl.wasReleasedThisFrame)
-                    cc.Sprint(false);
-            }
+            if (Input.GetKeyDown(sprintInput))
+                cc.Sprint(true);
+            else if (Input.GetKeyUp(sprintInput))
+                cc.Sprint(false);
         }
 
         /// <summary>
@@ -197,17 +142,10 @@ namespace Invector.vCharacterController
         /// </summary>
         protected virtual void JumpInput()
         {
-            //if (Input.GetKeyDown(jumpInput) && JumpConditions())
-            //    cc.Jump();
-            var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-            if (keyboard.spaceKey.wasPressedThisFrame && JumpConditions())
-            {
+            if (Input.GetKeyDown(jumpInput) && JumpConditions())
                 cc.Jump();
-            }
         }
 
         #endregion       
     }
-
 }
