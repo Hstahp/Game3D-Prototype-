@@ -67,7 +67,7 @@ public class TowerTargeting : SaiMonoBehaviour
 
     protected virtual void RemoveEnemy(Collider collider)
     {
-        foreach (EnemyController enemyCtrl in this.enemies)
+        foreach (EnemyController  enemyCtrl in this.enemies)
         {
             if (collider.transform.parent.name == enemyCtrl.name)
             {
