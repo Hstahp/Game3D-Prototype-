@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class PlayerAiming : MonoBehaviour
+public class PlayerAiming : PlayerAbstract
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected float closeLookDistance = 0.6f;
+    protected float farLookDistance = 1.3f;
+
+    private void FixedUpdate()
     {
-        
+        this.Aiming();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Aiming()
     {
-        
+        if (InputManager.Instance.IsRightClick()) this.LookClose();
+        else this.LookFar();
+    }
+
+    protected virtual void LookClose()
+    {
+        this.playerController.ThirdPersonCamera.defaultDistance = this.closeLookDistance;
+    }
+
+    protected virtual void LookFar()
+    {
+        this.playerController.ThirdPersonCamera.defaultDistance = this.farLookDistance;
     }
 }
