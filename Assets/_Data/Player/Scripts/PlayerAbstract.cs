@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerAbstract : SaiMonoBehaviour
 {
-    [SerializeField] protected PlayerController playerController;
-    public PlayerController PlayerController => playerController;
+    [SerializeField] protected PlayerController playerCtrl;
+    public PlayerController PlayerController => playerCtrl;
 
     protected override void LoadComponents()
     {
@@ -13,8 +13,8 @@ public class PlayerAbstract : SaiMonoBehaviour
 
     protected virtual void LoadPlayerController()
     {
-        if (this.playerController != null) return;
-        this.playerController = transform.GetComponentInParent<PlayerController>();
+        if (this.playerCtrl != null) return;
+        this.playerCtrl = transform.GetComponentInParent<PlayerController>();
         Debug.Log(transform.name + ": LoadPlayerController", gameObject);
     }
 }
