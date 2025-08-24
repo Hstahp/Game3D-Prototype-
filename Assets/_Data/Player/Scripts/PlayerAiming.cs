@@ -19,10 +19,17 @@ public class PlayerAiming : PlayerAbstract
     protected virtual void LookClose()
     {
         this.playerController.ThirdPersonCamera.defaultDistance = this.closeLookDistance;
+        CrosshairPointer crosshairPointer = this.playerController.CrosshairPointer;
+        this.playerController.ThirdPersonController.RotateToPosition(crosshairPointer.transform.position);
+
+        this.playerController.ThirdPersonController.isSprinting = false;
+        this.playerController.AimingRig.weight = 1;
     }
 
     protected virtual void LookFar()
     {
         this.playerController.ThirdPersonCamera.defaultDistance = this.farLookDistance;
+        this.playerController.AimingRig.weight = 0;
+
     }
 }

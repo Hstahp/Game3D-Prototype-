@@ -2,6 +2,7 @@ using Invector.vCharacterController;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerController : SaiMonoBehaviour
 {
@@ -15,12 +16,16 @@ public class PlayerController : SaiMonoBehaviour
     [SerializeField] protected CrosshairPointer crosshairPointer;
     public CrosshairPointer CrosshairPointer => crosshairPointer;
 
+    [SerializeField] protected Rig aimingRig;
+    public Rig AimingRig => aimingRig;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadThirdPersonCtrl();
         this.LoadThirdPersonCamera();
         this.LoadCrosshairPointer();
+        this.LodaAimingRig();
     }
 
     protected virtual void LoadCrosshairPointer()
@@ -42,10 +47,19 @@ public class PlayerController : SaiMonoBehaviour
         if (this.thirdPersonCamera != null) return;
         this.thirdPersonCamera = GameObject.FindAnyObjectByType<vThirdPersonCamera>();
         this.thirdPersonCamera.rightOffset = 0.6f;
-        this.thirdPersonCamera.defaultDistance = 1.2f;
+        this.thirdPersonCamera.defaultDistance = 1.3f;
         this.thirdPersonCamera.height = 1.3f;
         this.thirdPersonCamera.yMinLimit = -40f;
         this.thirdPersonCamera.yMaxLimit = 40f;
         Debug.Log(transform.name + ": LoadThirdPersonCamera", gameObject);
+    }
+
+    protected virtual void LodaAimingRig()
+    {
+        if (this.aimingRig != null) return;
+        //this.aimingRig = this.transform.GetComponentInChildren<Rig>();
+        //this.aimingRig = this.transform.Find("Model").GetComponentInChildren<Rig>();
+        this.aimingRig = transform.Find("Model").Find("AimingRig").GetComponent<Rig>();
+        Debug.Log(transform.name + ": LodaAimingRig", gameObject);
     }
 }
