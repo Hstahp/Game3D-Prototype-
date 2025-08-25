@@ -27,7 +27,6 @@ public class EnemySpawning : EnemyManagerAbstract
         newEnemy.gameObject.SetActive(true);
 
         this.spawnedEnemies.Add(newEnemy);  
-        Debug.Log("Spawning");
     }
    
     protected virtual void RemoveDeadOne()

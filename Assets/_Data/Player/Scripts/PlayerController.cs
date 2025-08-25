@@ -19,6 +19,9 @@ public class PlayerController : SaiMonoBehaviour
     [SerializeField] protected Rig aimingRig;
     public Rig AimingRig => aimingRig;
 
+    [SerializeField] protected Weapons weapons;
+    public Weapons Weapons => weapons;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -26,6 +29,7 @@ public class PlayerController : SaiMonoBehaviour
         this.LoadThirdPersonCamera();
         this.LoadCrosshairPointer();
         this.LodaAimingRig();
+        this.LoadWeapons();
     }
 
     protected virtual void LoadCrosshairPointer()
@@ -61,5 +65,12 @@ public class PlayerController : SaiMonoBehaviour
         //this.aimingRig = this.transform.Find("Model").GetComponentInChildren<Rig>();
         this.aimingRig = transform.Find("Model").Find("AimingRig").GetComponent<Rig>();
         Debug.Log(transform.name + ": LodaAimingRig", gameObject);
+    }
+
+    protected virtual void LoadWeapons()
+    {
+        if(this.weapons != null) return;    
+        this.weapons = transform.GetComponentInChildren<Weapons>();
+        Debug.Log(transform.name + ": LoadWeapons", gameObject);
     }
 }

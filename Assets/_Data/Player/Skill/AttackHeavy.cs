@@ -4,6 +4,7 @@ public class AttackHeavy : AttackAbstract
 {
     protected override void Attacking()
     {
-        throw new System.NotImplementedException();
+        if (!InputManager.Instance.IsAttackHeavy()) return;
+        Debug.Log("Heavy Attack");
     }
 }
