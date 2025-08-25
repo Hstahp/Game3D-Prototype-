@@ -2,9 +2,22 @@ using UnityEngine;
 
 public class AttackHeavy : AttackAbstract
 {
+    protected string effectName = "Fire2";
     protected override void Attacking()
     {
         if (!InputManager.Instance.IsAttackHeavy()) return;
-        Debug.Log("Heavy Attack");
+        AttackPoint attackPoint = this.GetAttackPoint();
+
+        EffectController effect = this.effectSpawner.Spawn(this.GetEffect(), attackPoint.transform.position);
+
+        EffectFlyAbstract effectFly = (EffectFlyAbstract)effect;
+        effectFly.FlyToTarget.SetTarget(this.playerController.CrosshairPointer.transform);
+
+        effect.gameObject.SetActive(true);
+    }
+
+    protected virtual EffectController GetEffect()
+    {
+        return this.effectPrefabs.GetByName(this.effectName);
     }
 }

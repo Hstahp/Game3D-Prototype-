@@ -1,7 +1,7 @@
-public class Fire1Controller : EffectController
+public class Fire1Controller : EffectFlyAbstract
 {
     public override string GetName()
     {
-        return "Fire!";
+        return "Fire1";
     }
 }

@@ -9,8 +9,11 @@ public class AttackLight : AttackAbstract
         AttackPoint attackPoint = this.GetAttackPoint();
 
         EffectController effect =  this.effectSpawner.Spawn(this.GetEffect(),  attackPoint.transform.position);
+
+        EffectFlyAbstract effectFly = (EffectFlyAbstract)effect;
+        effectFly.FlyToTarget.SetTarget(this.playerController.CrosshairPointer.transform);
+
         effect.gameObject.SetActive(true);
-        Debug.Log("Light Attack");
     }
 
     protected virtual EffectController GetEffect()
