@@ -3794,6 +3794,9 @@ MonoBehaviour:
   inventories:
   - {fileID: 1423776567}
   - {fileID: 2108362887}
+  itemProfiles:
+  - {fileID: 11400000, guid: 3976e6fb5a2c0de4bb02f35f135095a8, type: 2}
+  - {fileID: 11400000, guid: b04d6ef084d9e7d448a4c8fcfc962154, type: 2}
 --- !u!4 &1337447054
 Transform:
   m_ObjectHideFlags: 0
