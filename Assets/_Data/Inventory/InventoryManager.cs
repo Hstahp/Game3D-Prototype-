@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : SaiSingleton<InventoryManager>
 {
@@ -15,7 +16,7 @@ public class InventoryManager : SaiSingleton<InventoryManager>
     protected override void Start()
     {
         base.Start();
-        this.AddTestItems();
+        //this.AddTestItems();
     }
 
     protected virtual void AddTestItems()
@@ -59,5 +60,15 @@ public class InventoryManager : SaiSingleton<InventoryManager>
             if (itemProfile.itemCode == itemCodeName) return itemProfile;
         }
         return null;
+    }
+
+    public virtual InventoryCtrl Monies()
+    {
+        return this.GetByName(InvCodeName.Monies);
+    }
+
+    public virtual InventoryCtrl Items()
+    {
+        return this.GetByName(InvCodeName.Items);
     }
 }
