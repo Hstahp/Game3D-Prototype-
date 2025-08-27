@@ -66,9 +66,12 @@ public class InventoryUI : SaiSingleton<InventoryUI>
             BtnItemInventory newItemUI = this.GetExistItem(itemInventory);
             if (newItemUI == null)
             {
-                //newItemUI = Instantiate(this.defaultItemInventoryUI);
-                //newItemUI.transform.parent = this.defaultItemInventoryUI.transform.parent;
-                //newItemUI.gameObject.SetActive(true);
+                newItemUI = Instantiate(this.defaultItemInventoryUI);
+                newItemUI.transform.SetParent(this.defaultItemInventoryUI.transform.parent);
+                newItemUI.SetItem(itemInventory);
+                newItemUI.transform.localScale = new Vector3(1, 1, 1);
+                newItemUI.gameObject.SetActive(true);
+                this.btnItems.Add(newItemUI);   
             }
         }
     }
@@ -77,7 +80,7 @@ public class InventoryUI : SaiSingleton<InventoryUI>
     {
         foreach (BtnItemInventory itemInvUI in this.btnItems)
         {
-            //if(itemInvUI.??? == itemInventory.itemId)
+            if (itemInvUI.ItemInventory.itemId == itemInventory.itemId) return itemInvUI;
         }
         return null;
     }
