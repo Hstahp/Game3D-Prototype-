@@ -1,11 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryUI : SaiSingleton<InventoryUI>
 {
     protected bool isShow = true;
-    bool iSShow => isShow;
+    protected bool IsShow => isShow;
 
-    [SerializeField] protected BntItemInventory itemInventory;
+    [SerializeField] protected BtnItemInventory defaultItemInventoryUI;
+    protected List<BtnItemInventory> btnItems = new();
+
+    protected virtual void FixedUpdate()
+    {
+        this.ItemUpdating();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -21,8 +30,8 @@ public class InventoryUI : SaiSingleton<InventoryUI>
 
     protected virtual void LoadBtnItemInventory()
     {
-        if (this.itemInventory != null) return;
-        this.itemInventory = this.GetComponentInChildren<BntItemInventory>();
+        if (this.defaultItemInventoryUI != null) return;
+        this.defaultItemInventoryUI = GetComponentInChildren<BtnItemInventory>();
         Debug.Log(transform.name + ": LoadBtnItemInventory", gameObject);
     }
 
@@ -37,7 +46,7 @@ public class InventoryUI : SaiSingleton<InventoryUI>
         gameObject.SetActive(false);
         this.isShow = false;
     }
-    
+
     public virtual void Toggle()
     {
         if (this.isShow) this.Hide();
@@ -46,6 +55,30 @@ public class InventoryUI : SaiSingleton<InventoryUI>
 
     protected virtual void HideDefaultItemInventory()
     {
-        this.itemInventory.gameObject.SetActive(false);
+        this.defaultItemInventoryUI.gameObject.SetActive(false);
+    }
+
+    protected virtual void ItemUpdating()
+    {
+        InventoryCtrl itemInvCtrl = InventoryManager.Instance.Items();
+        foreach (ItemInventory itemInventory in itemInvCtrl.Items)
+        {
+            BtnItemInventory newItemUI = this.GetExistItem(itemInventory);
+            if (newItemUI == null)
+            {
+                //newItemUI = Instantiate(this.defaultItemInventoryUI);
+                //newItemUI.transform.parent = this.defaultItemInventoryUI.transform.parent;
+                //newItemUI.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    protected virtual BtnItemInventory GetExistItem(ItemInventory itemInventory)
+    {
+        foreach (BtnItemInventory itemInvUI in this.btnItems)
+        {
+            //if(itemInvUI.??? == itemInventory.itemId)
+        }
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BntItemInventory : ButtonAbstract
+public class BtnItemInventory : ButtonAbstract
 {
     protected override void OnClick()
     {
