@@ -4951,6 +4951,7 @@ MonoBehaviour:
   - {fileID: 2108362887}
   itemProfiles:
   - {fileID: 11400000, guid: 3976e6fb5a2c0de4bb02f35f135095a8, type: 2}
+  - {fileID: 11400000, guid: df4312411211a414a916e088e8947fee, type: 2}
   - {fileID: 11400000, guid: b04d6ef084d9e7d448a4c8fcfc962154, type: 2}
 --- !u!4 &1337447054
 Transform:
@@ -5135,6 +5136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3bb1db7657913459bf64f87993e159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
 --- !u!4 &1423776568
 Transform:
   m_ObjectHideFlags: 0
@@ -5462,6 +5464,11 @@ MonoBehaviour:
   button: {fileID: 1480866756}
   txtItemName: {fileID: 1772547089}
   txtItemCount: {fileID: 1261881342}
+  itemInventory:
+    itemId: 0
+    itemName: 
+    itemProfile: {fileID: 0}
+    itemCount: 0
 --- !u!1 &1484016512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9078,6 +9085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088351750a2bb1e4aa21df3754fd21a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
 --- !u!4 &2108362888
 Transform:
   m_ObjectHideFlags: 0

@@ -30,13 +30,13 @@ public class InventoryTester : SaiMonoBehaviour
     }
 
     [ProButton]
-    public virtual void AddTestItems(int count)
+    public virtual void AddTestItems(ItemCode itemCode, int count)
     {
         InventoryCtrl items = InventoryManager.Instance.GetByName(InvCodeName.Items);
         for (int i = 0; i < count; i++)
         {
             ItemInventory wand = new();
-            wand.itemProfile = InventoryManager.Instance.GetProfileByCode(ItemCode.Wand);
+            wand.itemProfile = InventoryManager.Instance.GetProfileByCode(itemCode);
             wand.itemName = wand.itemProfile.itemName;
             wand.itemCount = 1;
             items.AddItem(wand);
@@ -44,13 +44,13 @@ public class InventoryTester : SaiMonoBehaviour
     }
 
     [ProButton]
-    public virtual void RemoveTestItems(int count)
+    public virtual void RemoveTestItems(ItemCode itemCode, int count)
     {
         InventoryCtrl items = InventoryManager.Instance.GetByName(InvCodeName.Items);
         for (int i = 0; i < count; i++)
         {
             ItemInventory wand = new();
-            wand.itemProfile = InventoryManager.Instance.GetProfileByCode(ItemCode.Wand);
+            wand.itemProfile = InventoryManager.Instance.GetProfileByCode(itemCode);
             wand.itemName = wand.itemProfile.itemName;
             wand.itemCount = 1;
             items.RemoveItem(wand);
