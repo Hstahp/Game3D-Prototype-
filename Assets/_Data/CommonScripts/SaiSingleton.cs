@@ -21,7 +21,7 @@ public abstract class SaiSingleton<T> : SaiMonoBehaviour where T : SaiMonoBehavi
         if(_instance == null)
         {
             _instance = this as T; //ép kiểu sang T
-            DontDestroyOnLoad(gameObject); //để object này không bị xóa khi load scene mới
+            if(transform.parent == null) DontDestroyOnLoad(gameObject); //để object này không bị xóa khi load scene mới
             return;
         }
         if (_instance != null) Debug.LogError("Another instance of SingletonExample already exit!");
