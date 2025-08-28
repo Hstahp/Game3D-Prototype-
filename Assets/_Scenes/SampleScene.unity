@@ -1220,7 +1220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 167, y: 48}
+  m_AnchoredPosition: {x: 149, y: 48}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &437098899
@@ -4926,6 +4926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337447054}
   - component: {fileID: 1337447053}
+  - component: {fileID: 1337447055}
   m_Layer: 0
   m_Name: InvetoryManager
   m_TagString: Untagged
@@ -4968,6 +4969,18 @@ Transform:
   - {fileID: 2108362888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337447055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337447052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aae9771dd98e804096b79648a24fa48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1342163583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9988,9 +10001,9 @@ SceneRoots:
   - {fileID: 304368618}
   - {fileID: 523766391}
   - {fileID: 136550847}
-  - {fileID: 1262778787}
   - {fileID: 1705994804}
   - {fileID: 475366788}
   - {fileID: 282520738}
   - {fileID: 1867776653}
+  - {fileID: 1262778787}
   - {fileID: 1337447054}
