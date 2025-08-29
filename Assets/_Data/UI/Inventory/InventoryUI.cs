@@ -6,13 +6,14 @@ public class InventoryUI : SaiSingleton<InventoryUI>
 {
     protected bool isShow = true;
     protected bool IsShow => isShow;
+    [SerializeField] protected Transform showHide;
 
     [SerializeField] protected BtnItemInventory defaultItemInventoryUI;
     protected List<BtnItemInventory> btnItems = new();
 
     protected virtual void FixedUpdate()
     {
-        this.ItemUpdating();
+        this.ItemsUpdating();
     }
 
     protected override void Start()
@@ -22,10 +23,15 @@ public class InventoryUI : SaiSingleton<InventoryUI>
         this.HideDefaultItemInventory();
     }
 
+    protected virtual void LateUpdate()
+    {
+        this.HotKeyToggleInventory();
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadBtnItemInventory();
+        this.LoadShowHide();
     }
 
     protected virtual void LoadBtnItemInventory()
@@ -35,15 +41,22 @@ public class InventoryUI : SaiSingleton<InventoryUI>
         Debug.Log(transform.name + ": LoadBtnItemInventory", gameObject);
     }
 
+    protected virtual void LoadShowHide()
+    {
+        if (this.showHide != null) return;
+        this.showHide = transform.Find("ShowHide");
+        Debug.Log(transform.name + ": LoadShowHide", gameObject);
+    }
+
     public virtual void Show()
     {
         this.isShow = true;
-        gameObject.SetActive(this.isShow);
+        this.showHide.gameObject.SetActive(this.isShow);
     }
 
     public virtual void Hide()
     {
-        gameObject.SetActive(false);
+        this.showHide.gameObject.SetActive(false);
         this.isShow = false;
     }
 
@@ -58,8 +71,9 @@ public class InventoryUI : SaiSingleton<InventoryUI>
         this.defaultItemInventoryUI.gameObject.SetActive(false);
     }
 
-    protected virtual void ItemUpdating()
+    protected virtual void ItemsUpdating()
     {
+        if (!this.isShow) return;
         InventoryCtrl itemInvCtrl = InventoryManager.Instance.Items();
         foreach (ItemInventory itemInventory in itemInvCtrl.Items)
         {
@@ -72,7 +86,7 @@ public class InventoryUI : SaiSingleton<InventoryUI>
                 newBtnItem.transform.localScale = new Vector3(1, 1, 1);
                 newBtnItem.gameObject.SetActive(true);
                 newBtnItem.name = itemInventory.itemName + "-" + itemInventory.itemId;
-                this.btnItems.Add(newBtnItem);   
+                this.btnItems.Add(newBtnItem);
             }
         }
     }
@@ -84,5 +98,10 @@ public class InventoryUI : SaiSingleton<InventoryUI>
             if (itemInvUI.ItemInventory.itemId == itemInventory.itemId) return itemInvUI;
         }
         return null;
+    }
+
+    protected virtual void HotKeyToggleInventory()
+    {
+        if (InputHotKey.Instance.IsToggleInventoryUI) this.Toggle();
     }
 }
