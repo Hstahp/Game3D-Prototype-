@@ -9,6 +9,8 @@ public class BtnItemInventory : ButtonAbstract
     [SerializeField] protected ItemInventory itemInventory;
     public ItemInventory ItemInventory => itemInventory;
 
+    [SerializeField] protected BtnItemInventoryCtrl btnItemInventoryCtrl;
+    public BtnItemInventoryCtrl BtnItemInventoryCtrl => btnItemInventoryCtrl;
     protected virtual void FixedUpdate()
     {
         this.ItemUpdating();
@@ -19,6 +21,7 @@ public class BtnItemInventory : ButtonAbstract
         base.LoadComponents();
         this.LoadItemName();
         this.LoadItemCount();
+        this.LoadBtnItemInventoryCtrl();
     }
 
     protected virtual void LoadItemName()
@@ -26,6 +29,13 @@ public class BtnItemInventory : ButtonAbstract
         if (this.txtItemName != null) return;
         this.txtItemName = transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
         Debug.Log(transform.name + ": LoadItemName", gameObject);
+    }
+
+    protected virtual void LoadBtnItemInventoryCtrl()
+    {
+        if (this.btnItemInventoryCtrl != null) return;
+        this.btnItemInventoryCtrl = transform.GetComponent<BtnItemInventoryCtrl>();
+        Debug.Log(transform.name + ": LoadBtnItemInventoryCtrl", gameObject);
     }
 
     protected virtual void LoadItemCount()
@@ -50,5 +60,10 @@ public class BtnItemInventory : ButtonAbstract
         this.txtItemName.text = this.itemInventory.itemName;
         this.txtItemCount.text = this.itemInventory.itemCount.ToString();
         if (this.itemInventory.itemCount == 0) Destroy(gameObject);
+        //if (this.itemInventory.itemCount == 0)
+        //{
+        //    if (btnItemInventoryCtrl != null) btnItemInventoryCtrl.Despawn.DoDespawn();
+        //    else gameObject.SetActive(false);
+        //}
     }
 }
