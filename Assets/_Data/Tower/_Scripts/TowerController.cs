@@ -18,6 +18,8 @@ public class TowerController : SaiMonoBehaviour
     public Bullet Bullet => bullet;
     [SerializeField] protected BulletPrefabs bulletPrefabs;
     public BulletPrefabs BulletPrefabs => bulletPrefabs;
+    [SerializeField] protected LevelAbstract level;
+    public LevelAbstract Level => level;
     [SerializeField] protected TowerShooting towerShooting;
     public TowerShooting TowerShooting => towerShooting;
     [SerializeField] protected List<FirePoint> firePoints = new();
@@ -37,7 +39,16 @@ public class TowerController : SaiMonoBehaviour
         this.LoadFirePoints();
         this.LoadBulletPrefabs();
         this.LoadTowerShooting();
+        this.LoadLevel();
     }
+
+    protected virtual void LoadLevel()
+    {
+        if (this.level != null) return;
+        this.level = GetComponentInChildren<LevelAbstract>();
+        Debug.Log(transform.name + ": LoadLevel", gameObject);
+    }
+
     protected virtual void LoadModel()
     {
         if (this.model != null) return;

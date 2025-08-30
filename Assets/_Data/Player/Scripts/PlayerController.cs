@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class PlayerController : SaiMonoBehaviour
+public class PlayerController : SaiSingleton<PlayerController>  
 {
     [SerializeField] protected vThirdPersonController thirdPersonCtrl;
     public vThirdPersonController ThirdPersonController => thirdPersonCtrl;
@@ -21,6 +21,8 @@ public class PlayerController : SaiMonoBehaviour
 
     [SerializeField] protected Weapons weapons;
     public Weapons Weapons => weapons;
+    [SerializeField] protected LevelAbstract level;
+    public LevelAbstract Level => level;
 
     protected override void LoadComponents()
     {
@@ -30,6 +32,7 @@ public class PlayerController : SaiMonoBehaviour
         this.LoadCrosshairPointer();
         this.LodaAimingRig();
         this.LoadWeapons();
+        this.LoadLevel();
     }
 
     protected virtual void LoadCrosshairPointer()
@@ -72,5 +75,12 @@ public class PlayerController : SaiMonoBehaviour
         if(this.weapons != null) return;    
         this.weapons = transform.GetComponentInChildren<Weapons>();
         Debug.Log(transform.name + ": LoadWeapons", gameObject);
+    }
+
+    protected virtual void LoadLevel()
+    {
+        if(this.level != null) return;    
+        this.level = transform.GetComponentInChildren<LevelAbstract>();
+        Debug.Log(transform.name + ": LoadLevel", gameObject);
     }
 }
