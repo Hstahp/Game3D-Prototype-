@@ -57,7 +57,7 @@ public class BtnItemInventory : ButtonAbstract
 
     protected virtual void ItemUpdating()
     {
-        this.txtItemName.text = this.itemInventory.itemName;
+        this.txtItemName.text = this.itemInventory.GetItemName();
         this.txtItemCount.text = this.itemInventory.itemCount.ToString();
         if (this.itemInventory.itemCount == 0) Destroy(gameObject);
         //if (this.itemInventory.itemCount == 0)

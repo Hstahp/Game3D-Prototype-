@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f71f8744a11b8a49bf6886e26085187, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
+  invCodeName: 1
   itemCode: 1
   itemName: Gold
   isStackable: 1
