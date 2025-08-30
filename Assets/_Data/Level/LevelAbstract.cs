@@ -30,6 +30,6 @@ public abstract class LevelAbstract : SaiMonoBehaviour
 
     protected virtual int GetNextLevelExp()
     {
-        return this.nextLevelExp = this.currentLevel * 15;
+        return this.nextLevelExp = this.currentLevel * 10;
     }
 }

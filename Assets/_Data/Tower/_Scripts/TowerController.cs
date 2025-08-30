@@ -18,8 +18,11 @@ public class TowerController : SaiMonoBehaviour
     public Bullet Bullet => bullet;
     [SerializeField] protected BulletPrefabs bulletPrefabs;
     public BulletPrefabs BulletPrefabs => bulletPrefabs;
+    [SerializeField] protected TowerShooting towerShooting;
+    public TowerShooting TowerShooting => towerShooting;
     [SerializeField] protected List<FirePoint> firePoints = new();
     public List<FirePoint> FirePoints => firePoints;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,6 +36,7 @@ public class TowerController : SaiMonoBehaviour
         this.LoadBulletSpawner();
         this.LoadFirePoints();
         this.LoadBulletPrefabs();
+        this.LoadTowerShooting();
     }
     protected virtual void LoadModel()
     {
@@ -66,7 +70,12 @@ public class TowerController : SaiMonoBehaviour
         this.bulletPrefabs = GameObject.FindAnyObjectByType<BulletPrefabs>();
         Debug.Log(transform.name + ": LoadBullet", gameObject);
         this.LoadBullet();
-
+    }
+    protected virtual void LoadTowerShooting()
+    {
+        if (this.towerShooting != null) return;
+        this.towerShooting = transform.GetComponentInChildren<TowerShooting>();
+        Debug.Log(transform.name + ": LoadTowerShooting", gameObject);
     }
     protected virtual void LoadFirePoints()
     {
@@ -75,6 +84,7 @@ public class TowerController : SaiMonoBehaviour
         this.firePoints = new List<FirePoint>(points);
         Debug.Log(transform.name + ": LoadBullet", gameObject);
     }
+
     protected virtual void HidePrefabs()
     {
         this.bullet.gameObject.SetActive(false);
