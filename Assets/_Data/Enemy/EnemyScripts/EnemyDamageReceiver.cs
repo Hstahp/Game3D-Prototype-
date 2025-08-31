@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 [RequireComponent(typeof(CapsuleCollider))]    
 public class EnemyDamageReceiver : DamageReceiver
 {
@@ -10,6 +11,7 @@ public class EnemyDamageReceiver : DamageReceiver
         base.LoadComponents();
         this.LoadCapsuleCollider();
         this.LoadEnemyCtrl();
+
     }
     protected virtual void LoadCapsuleCollider()
     {
@@ -27,6 +29,7 @@ public class EnemyDamageReceiver : DamageReceiver
         this.enemyController = transform.GetComponentInParent<EnemyController>();
         Debug.Log(transform.name + ": LoadEnemyCtrl", gameObject);
     }
+    
     protected override void OnDead()
     {
         base.OnDead();

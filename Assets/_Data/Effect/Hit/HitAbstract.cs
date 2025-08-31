@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class HitAbstract : MonoBehaviour
+public class HitAbstract : EffectController
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override string GetName()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return "Hit1";
     }
 }

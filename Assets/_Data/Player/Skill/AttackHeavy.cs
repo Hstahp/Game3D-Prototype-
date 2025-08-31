@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackHeavy : AttackAbstract
 {
-    protected string effectName = "Fire2";
+    protected string effectName = "ProjectTile3";
     protected override void Attacking()
     {
         if (!InputManager.Instance.IsAttackHeavy()) return;

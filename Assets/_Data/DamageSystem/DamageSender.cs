@@ -29,5 +29,9 @@ public abstract  class DamageSender : SaiMonoBehaviour
     {
         damageReceiver.Deduct(this.damage);
     }
-  
+
+    public virtual void SetDamage(int newDamage)
+    {
+        this.damage = newDamage;
+    }
 }

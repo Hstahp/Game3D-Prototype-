@@ -4,15 +4,12 @@ using UnityEngine;
 public class PoolPrefabs<T>: SaiMonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] protected List<T> prefabs = new();
-    protected override void Awake()
-    {
-        base.Awake();
-        this.HidePrefabs();
-    }
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadEnemyPrefabs();
+        this.HidePrefabs();
     }
     protected virtual void LoadEnemyPrefabs()
     {
