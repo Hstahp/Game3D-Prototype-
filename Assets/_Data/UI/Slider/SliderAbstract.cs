@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class SliderAbstract : SaiMonoBehaviour
 {
     [SerializeField] protected Slider slider;
-
     protected override void LoadComponents()
     {
         base.LoadComponents();
