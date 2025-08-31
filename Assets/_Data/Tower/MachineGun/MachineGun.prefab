@@ -47,11 +47,12 @@ MonoBehaviour:
   towerController: {fileID: 7387655770789087814}
   currentFirePoint: 0
   targetLoadSpeed: 1
-  shootSpeed: 0.5
-  rotationSpeed: 2
+  shootSpeed: 0.7
+  rotationSpeed: 4
   target: {fileID: 0}
   killCount: 0
   totalKill: 0
+  effectSpawner: {fileID: 0}
 --- !u!1 &6659177719152743450
 GameObject:
   m_ObjectHideFlags: 0

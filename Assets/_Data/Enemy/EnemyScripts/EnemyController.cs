@@ -47,7 +47,7 @@ public abstract class EnemyController : PoolObj
     {
         if (this.towerTargetable != null) return;
         this.towerTargetable = transform.GetComponentInChildren<TowerTargetable>();
-        this.towerTargetable.transform.localPosition = new Vector3(0, 0.4f, 0);
+        this.towerTargetable.transform.localPosition = new Vector3(0, 1f, 0);
         Debug.Log(transform.name + ": LoadTargetTable", gameObject);
     }
     protected virtual void LoadEnemyDamageReceiver()

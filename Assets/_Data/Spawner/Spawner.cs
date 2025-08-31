@@ -6,21 +6,24 @@ public abstract class Spawner<T> : SaiMonoBehaviour where T : PoolObj
 {
     [SerializeField] protected int spawnCount = 0;
     [SerializeField] protected Transform poolHolder;
+
     [SerializeField] protected PoolPrefabs<T> poolPrefabs;
-    public PoolPrefabs<T> PoolPrefabs => poolPrefabs;   
+    public PoolPrefabs<T> PoolPrefabs => poolPrefabs;
+
     [SerializeField] protected List<T> inPoolObjs = new();
-  
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPoolHolder();
         this.LoadPoolPrefabs();
     }
+
     protected virtual void LoadPoolHolder()
     {
         if (this.poolHolder != null) return;
         this.poolHolder = transform.Find("PoolHolder");
-        if(this.poolHolder == null)
+        if (this.poolHolder == null)
         {
             this.poolHolder = new GameObject("PoolHolder").transform;
             this.poolHolder.parent = transform;
@@ -45,8 +48,8 @@ public abstract class Spawner<T> : SaiMonoBehaviour where T : PoolObj
             this.spawnCount++;
             this.UpdateName(prefab.transform, newObject.transform);
         }
-        
-        if(this.poolHolder != null) newObject.transform.parent = this.poolHolder.transform;
+
+        if (this.poolHolder != null) newObject.transform.parent = this.poolHolder.transform;
 
         return newObject;
     }
