@@ -2,8 +2,10 @@ using UnityEngine;
 
 public abstract class DamageReceiver :SaiMonoBehaviour
 {
-    protected int maxHp = 10;
-    protected int currentHp = 10;
+    [SerializeField] protected int maxHp = 10;
+    public int MaxHp => maxHp;
+    [SerializeField] protected int currentHp = 10;
+    public int CurrentHp => currentHp;
     protected bool isDead = false;
     [SerializeField] protected bool isImmotal = false;
     protected virtual void OnEnable()
