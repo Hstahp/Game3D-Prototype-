@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
-public  class EffectDamageSender : DamageSender
+public abstract class EffectDamageSender : DamageSender
 {
     [SerializeField] protected EffectController effectController;
     [SerializeField] protected SphereCollider sphereCollider;
@@ -26,9 +26,21 @@ public  class EffectDamageSender : DamageSender
         this.effectController = transform.GetComponentInParent<EffectController>();
         Debug.Log(transform.name + ": LoadEffectController", gameObject);
     }
-    protected override void Send(DamageReceiver damageReceiver)
+    protected override void Send(DamageReceiver damageReceiver, Collider collider)
     {
-        base.Send(damageReceiver);
+        base.Send(damageReceiver, collider);
+        this.ShowHitEffect(collider);
         this.effectController.Despawn.DoDespawn();
     }
+
+    protected virtual void ShowHitEffect(Collider collider)
+    {
+       Vector3 hitPoint = collider.ClosestPoint(transform.position);
+        EffectController prefab = EffectSpawnerCtrl.Instance.Spawner.PoolPrefabs.GetByName(this.GetHitName());
+        EffectController newObj = EffectSpawnerCtrl.Instance.Spawner.Spawn(prefab, hitPoint);
+        newObj.gameObject.SetActive(true);
+    }
+
+    protected abstract string GetHitName();
+    
 }
