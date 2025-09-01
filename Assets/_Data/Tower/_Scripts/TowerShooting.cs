@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TowerShooting : TowerAbstract
 {
@@ -13,8 +12,9 @@ public class TowerShooting : TowerAbstract
     [SerializeField] protected int totalKill = 0;
     public int KillCount => killCount;
 
-    [SerializeField] protected EffectSpawner effectSpawner;
+    [SerializeField] protected SoundName shootSFXName = SoundName.LaserKickDrum;
 
+    [SerializeField] protected EffectSpawner effectSpawner;
 
     protected override void Start()
     {
@@ -65,7 +65,7 @@ public class TowerShooting : TowerAbstract
 
     protected virtual void Shooting()
     {
-        Invoke(nameof(this.Shooting), this.shootSpeed);
+        Invoke(nameof(this.Shooting), this.shootSpeed + Random.Range(-0.1f, 0.1f));
         if (this.target == null) return;
 
         FirePoint firePoint = this.GetFirePoint();
@@ -73,11 +73,12 @@ public class TowerShooting : TowerAbstract
 
         this.SpawnBullet(firePoint.transform.position, rotatorDirection);
         this.SpawnMuzzle(firePoint.transform.position, rotatorDirection);
+        this.SpawnSound(firePoint.transform.position);
     }
 
     protected virtual void SpawnBullet(Vector3 spawnPoint, Vector3 rotatorDirection)
     {
-        EffectController effect = this.effectSpawner.PoolPrefabs.GetByName("ProjectTile1");
+        EffectController effect = this.effectSpawner.PoolPrefabs.GetByName("Projectile1");
         EffectController newEffect = this.effectSpawner.Spawn(effect, spawnPoint);
         newEffect.transform.forward = rotatorDirection;
 
@@ -118,5 +119,12 @@ public class TowerShooting : TowerAbstract
         if (this.killCount < count) return false;
         this.killCount -= count;
         return true;
+    }
+
+    protected virtual void SpawnSound(Vector3 position)
+    {
+        SFXCtrl sfxPrefab = (SFXCtrl)SoundSpawnerCtrl.Instance.Prefabs.GetByName(this.shootSFXName.ToString());
+        SFXCtrl newSfx = (SFXCtrl)SoundSpawnerCtrl.Instance.Spawner.Spawn(sfxPrefab, position);
+        newSfx.gameObject.SetActive(true);
     }
 }

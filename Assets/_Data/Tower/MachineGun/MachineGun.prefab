@@ -52,6 +52,7 @@ MonoBehaviour:
   target: {fileID: 0}
   killCount: 0
   totalKill: 0
+  shootSFXName: 101
   effectSpawner: {fileID: 0}
 --- !u!1 &6659177719152743450
 GameObject:
@@ -105,9 +106,6 @@ MonoBehaviour:
   model: {fileID: 1400880131377315246}
   rotator: {fileID: 8994859296210943873}
   towerTargeting: {fileID: 4090316064882261032}
-  bulletSpawner: {fileID: 0}
-  bullet: {fileID: 0}
-  bulletPrefabs: {fileID: 0}
   level: {fileID: 7271712435647688546}
   towerShooting: {fileID: 6977866148489301794}
   firePoints:

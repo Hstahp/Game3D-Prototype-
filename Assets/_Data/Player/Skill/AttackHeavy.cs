@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class AttackHeavy : AttackAbstract
 {
-    protected string effectName = "ProjectTile3";
+    protected string effectName = "Projectile3";
+    protected float timer = 0;
+    protected float delay = 0.1f;
+    [SerializeField] protected SoundName shootSFXName = SoundName.LaserOneShoot;
+
     protected override void Attacking()
     {
         if (!InputManager.Instance.IsAttackHeavy()) return;
+
+        this.timer += Time.deltaTime;
+        if (this.timer < this.delay) return;
+        this.timer = 0;
         AttackPoint attackPoint = this.GetAttackPoint();
 
         EffectController effect = this.effectSpawner.Spawn(this.GetEffect(), attackPoint.transform.position);
@@ -14,10 +22,18 @@ public class AttackHeavy : AttackAbstract
         effectFly.FlyToTarget.SetTarget(this.playerController.CrosshairPointer.transform);
 
         effect.gameObject.SetActive(true);
+        this.SpawnSound(effectFly.transform.position);
     }
 
     protected virtual EffectController GetEffect()
     {
         return this.effectPrefabs.GetByName(this.effectName);
+    }
+
+    protected virtual void SpawnSound(Vector3 position)
+    {
+        SFXCtrl sfxPrefab = (SFXCtrl)SoundSpawnerCtrl.Instance.Prefabs.GetByName(this.shootSFXName.ToString());
+        SFXCtrl newSfx = (SFXCtrl)SoundSpawnerCtrl.Instance.Spawner.Spawn(sfxPrefab, position);
+        newSfx.gameObject.SetActive(true);
     }
 }
