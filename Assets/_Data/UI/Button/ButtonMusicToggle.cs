@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ButtonMusicToggle : ButtonAbstract
+public class BtnMusicToggle : ButtonAbstract
 {
     protected virtual void LateUpdate()
     {
@@ -14,6 +14,6 @@ public class ButtonMusicToggle : ButtonAbstract
 
     protected virtual void HotkeyToogleMusic()
     {
-        if (InputHotKey.Instance.IsToogleMusic) SoundManager.Instance.ToggleMusic();
+        if (InputHotKey.Instance.IsToggleMusic) SoundManager.Instance.ToggleMusic();
     }
 }
