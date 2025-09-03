@@ -2,6 +2,8 @@
 
 public class TowerShooting : TowerAbstract
 {
+    [Header("Shooting")]
+    [SerializeField] protected bool isDisable = true;
     [SerializeField] protected int currentFirePoint = 0;
     [SerializeField] protected float targetLoadSpeed = 1f;
     [SerializeField] protected float shootSpeed = 0.7f;
@@ -48,9 +50,10 @@ public class TowerShooting : TowerAbstract
 
         this.target = this.towerController.TowerTargeting.Nearest;
     }
-
+    
     protected virtual void Looking()
     {
+        if (this.isDisable) return;
         if (this.target == null) return;
         Vector3 directionToTarget = this.target.TowerTargetable.transform.position - this.towerController.Rotator.position;
         Vector3 newDirection = Vector3.RotateTowards(
@@ -65,6 +68,8 @@ public class TowerShooting : TowerAbstract
 
     protected virtual void Shooting()
     {
+        if (this.isDisable) return;
+
         Invoke(nameof(this.Shooting), this.shootSpeed + Random.Range(-0.1f, 0.1f));
         if (this.target == null) return;
 
@@ -126,5 +131,15 @@ public class TowerShooting : TowerAbstract
         SFXCtrl newSFX = SoundManager.Instance.CreateSFX(this.shootSFXName);
         newSFX.transform.position = position;
         newSFX.gameObject.SetActive(true);
+    }
+
+    public virtual void Active()
+    {
+        this.isDisable = false;
+    }
+
+    public virtual void Disable()
+    {
+        this.isDisable = true;
     }
 }

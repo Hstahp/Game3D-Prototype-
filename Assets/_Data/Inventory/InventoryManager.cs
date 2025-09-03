@@ -7,12 +7,45 @@ public class InventoryManager : SaiSingleton<InventoryManager>
     [SerializeField] protected List<InventoryCtrl> inventories;
     [SerializeField] protected List<ItemProfileSO> itemProfiles;
 
+    protected override void Start()
+    {
+        base.Start();
+        //Invoke(nameof(this.LoadGameData),3f);
+        this.LoadGameData();
+    }
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadInventories();
         this.LoadItemProfiles();
     }
+    public virtual void SaveGameData()
+    {
+        ItemInventory itemGold = this.Currency().FindItem(ItemCode.Gold);
+        if(itemGold != null) GameManager.Instance.Save.SaveInit("gold",itemGold.itemCount);
+
+        ItemInventory itemExp = this.Currency().FindItem(ItemCode.PlayerExp);
+        if (itemExp != null) GameManager.Instance.Save.SaveInit("exp", itemExp.itemCount);
+
+        if (LevelManager.Instance != null && LevelManager.Instance.Level != null)
+            GameManager.Instance.Save.SaveInit("level", LevelManager.Instance.Level.CurrentLevel);
+    }
+
+    public virtual void LoadGameData()
+    {
+        int goldCount = GameManager.Instance.Save.LoadInit("gold");
+        int expCount = GameManager.Instance.Save.LoadInit("exp");
+        this.AddItem(ItemCode.Gold, goldCount);
+        this.AddItem(ItemCode.PlayerExp, expCount);
+
+        int level = GameManager.Instance.Save.LoadInit("level");
+        if (LevelManager.Instance != null && LevelManager.Instance.Level != null)
+            LevelManager.Instance.Level.SetLevel(level);
+        InvokeRepeating(nameof(this.SaveGameData), 5f, 5f);
+
+    }
+
     protected virtual void LoadInventories()
     {
         if (this.inventories.Count > 0) return;
@@ -45,7 +78,7 @@ public class InventoryManager : SaiSingleton<InventoryManager>
         return null;
     }
 
-    public virtual InventoryCtrl Monies()
+    public virtual InventoryCtrl Currency()
     {
         return this.GetByCodeName(InvCodeName.Currency);
     }

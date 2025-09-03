@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671892bf3cb3a86429640b6c95691fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerController: {fileID: 7387655770789087814}
+  towerController: {fileID: 0}
   currentFirePoint: 0
   targetLoadSpeed: 1
   shootSpeed: 0.7
@@ -63,7 +63,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7388048630224490142}
-  - component: {fileID: 7387655770789087814}
+  - component: {fileID: 1469452137730650361}
   m_Layer: 0
   m_Name: MachineGun
   m_TagString: Untagged
@@ -91,7 +91,7 @@ Transform:
   - {fileID: 9151666742622728974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7387655770789087814
+--- !u!114 &1469452137730650361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,9 +100,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6659177719152743450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f5c236bd0938a46a4b5721b6159a39, type: 3}
+  m_Script: {fileID: 11500000, guid: 81c0b2b713ac4fb408798fc384b64e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawn: {fileID: 0}
   model: {fileID: 1400880131377315246}
   rotator: {fileID: 8994859296210943873}
   towerTargeting: {fileID: 4090316064882261032}
@@ -259,7 +260,7 @@ MonoBehaviour:
   currentLevel: 1
   maxLevel: 100
   nextLevelExp: 0
-  towerController: {fileID: 7387655770789087814}
+  towerController: {fileID: 0}
 --- !u!1001 &567921728810203542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 5208444674149027793, guid: 9a6d7943df55acd47811c9762317a956, type: 3}
       propertyPath: towerController
       value: 
-      objectReference: {fileID: 7387655770789087814}
+      objectReference: {fileID: 0}
     - target: {fileID: 8226680540303282760, guid: 9a6d7943df55acd47811c9762317a956, type: 3}
       propertyPath: m_Name
       value: LevelText

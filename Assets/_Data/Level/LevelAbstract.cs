@@ -9,6 +9,7 @@ public abstract class LevelAbstract : SaiMonoBehaviour
     public int CurrentLevel => currentLevel;
 
     [SerializeField] protected int maxLevel = 100;
+    public int MaxLevel => maxLevel;
     [SerializeField] protected int nextLevelExp;
 
     protected abstract int GetCurrentExp();
@@ -30,5 +31,10 @@ public abstract class LevelAbstract : SaiMonoBehaviour
     protected virtual int GetNextLevelExp()
     {
         return this.nextLevelExp = this.currentLevel * 10;
+    }
+
+    public void SetLevel(int level)
+    {
+        this.currentLevel = Mathf.Clamp(level, 1, this.maxLevel);
     }
 }

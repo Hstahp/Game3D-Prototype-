@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TowerController : SaiMonoBehaviour
+public abstract class TowerController : PoolObj
 {
     [SerializeField] protected Transform model;
     [SerializeField] protected Transform rotator;

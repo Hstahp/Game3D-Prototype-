@@ -8,6 +8,7 @@ public abstract class InventoryCtrl : SaiMonoBehaviour
 
     public abstract InvCodeName GetName();
 
+
     public virtual void AddItem(ItemInventory item)
     {
         ItemInventory itemExist = this.FindItem(item.ItemProfile.itemCode);
